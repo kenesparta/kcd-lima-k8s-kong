@@ -1,3 +1,3 @@
 locals {
-  project_name = "${env("PROJECT_NAME")}"
+  project_name = var.PROJECT_NAME
 }
