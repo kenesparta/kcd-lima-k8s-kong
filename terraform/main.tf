@@ -4,11 +4,11 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 4"
+      version = "~> 5"
     }
   }
 }
 
 provider "google" {
-  project = local.project_name
+  project = var.project_name
 }

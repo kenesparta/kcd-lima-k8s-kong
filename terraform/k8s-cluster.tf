@@ -5,6 +5,7 @@ resource "google_container_cluster" "kcd_cluster_a" {
   subnetwork               = google_compute_subnetwork.kcd_subnet_a.id
   remove_default_node_pool = true
   initial_node_count       = 1
+  deletion_protection      = false
 }
 
 resource "google_container_node_pool" "primary_nodes" {

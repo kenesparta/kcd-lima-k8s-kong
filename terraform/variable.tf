@@ -1,3 +1,3 @@
-variable "PROJECT_NAME" {
+variable "project_name" {
   type = string
 }
