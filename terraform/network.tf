@@ -5,7 +5,7 @@ resource "google_compute_network" "kcd_main_network" {
 
 resource "google_compute_subnetwork" "kcd_subnet_a" {
   name          = "k8s-cluster-subnet-a"
-  region        = "us-central1"
+  region        = var.region
   network       = google_compute_network.kcd_main_network.id
   ip_cidr_range = "10.0.0.0/16"
 }
@@ -58,7 +58,7 @@ resource "google_compute_firewall" "allow-egress" {
 
 resource "google_compute_router" "nat_router" {
   name    = "nat-router"
-  region  = "us-central1"
+  region  = var.region
   network = google_compute_network.kcd_main_network.name
 }
 
