@@ -1,5 +1,5 @@
 resource "google_dns_managed_zone" "kcd_dns_zone" {
-  name     = "k8s-dns-zone"
+  name     = "kcd-zone"
   dns_name = "${var.domain_name}."
 }
 
