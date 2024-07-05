@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cep-api
+  name: cep-api
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: cep-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: cep-api
+    spec:
+      containers:
+        - image: kenesparta/cep-api:latest
+          name: echo
+          ports:
+            - containerPort: 8080
+          resources: {}

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hw-api
+  annotations:
+    spec.ingressClassName: "kong"
+    konghq.com/override: do-not-preserve-host
+    # konghq.com/plugins: rl-by-header,prometheus-bets
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /hw
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 9999

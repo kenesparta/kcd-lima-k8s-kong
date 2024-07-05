@@ -3,7 +3,7 @@ kind: KongClusterPlugin
 metadata:
   name: prometheus-bets
   annotations:
-    kubernetes.io/ingress.class: "kong"
+    spec.ingressClassName: "kong"
   labels:
     global: "true"
 config: {}

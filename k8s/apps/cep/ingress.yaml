@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cep-api
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  ingressClassName: kong
+  rules:
+    - host: scruffy3024.site
+      http:
+        paths:
+          - path: /cep
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: cep-api
+                port:
+                  number: 8080
