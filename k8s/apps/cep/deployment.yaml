@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - image: kenesparta/cep-api:latest
-          name: echo
+          name: cep-api
           ports:
             - containerPort: 8080
           resources: {}
