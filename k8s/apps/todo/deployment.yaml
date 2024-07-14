@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo-api
+  name: todo-api
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: todo-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: todo-api
+    spec:
+      containers:
+        - image: kenesparta/rs-simple-todo:latest
+          name: todo-api
+          ports:
+            - containerPort: 8754
+          resources: {}

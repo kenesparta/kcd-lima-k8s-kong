@@ -1,0 +1,9 @@
+#apiVersion: configuration.konghq.com/v1
+#kind: KongConsumer
+#metadata:
+#   name: cep-api-key
+#   annotations:
+#      kubernetes.io/ingress.class: kong
+#username: ken
+#credentials:
+#   - cep-api-key

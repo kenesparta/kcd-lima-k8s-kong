@@ -1,0 +1,11 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: todo-rate-limiting
+  annotations:
+    kubernetes.io/ingress.class: kong
+config:
+  minute: 100
+  policy: local
+  limit_by: ip
+plugin: rate-limiting

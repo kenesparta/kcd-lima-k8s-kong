@@ -1,5 +1,9 @@
 SHELL := /bin/bash
 
+
+include .env
+export $(shell sed 's/=.*//' .env)
+
 app_ns = "kcd-apps"
 kong_ns = "kcd-kong"
 monitoring_ns = "monitoring"
@@ -21,9 +25,17 @@ install-kong:
 
 deploy-cep-api:
 	kubectl create ns $(app_ns)
+	# Auth
+	kubectl create secret generic cep-api-key --from-literal=key="$$API_KEY" -n $(app_ns)
 	kubectl apply -f ./apps/cep --recursive -n $(app_ns)
-	kubectl annotate service cep-api konghq.com/plugins=cep-rate-limiting -n $(app_ns)
-	kubectl annotate ingress cep-api konghq.com/plugins=cep-rate-limiting -n $(app_ns)
+	# Rate Limit
+	kubectl annotate service cep-api konghq.com/plugins=cep-rate-limiting,cep-api-key -n $(app_ns)
+	kubectl annotate ingress cep-api konghq.com/plugins=cep-rate-limiting,cep-api-key -n $(app_ns)
+
+deploy-todo-api:
+	kubectl apply -f ./apps/todo --recursive -n $(app_ns)
+	kubectl annotate service todo-api konghq.com/plugins=todo-rate-limiting -n $(app_ns)
+	kubectl annotate ingress todo-api konghq.com/plugins=todo-rate-limiting -n $(app_ns)
 
 .PHONY: monitoring
 monitoring:

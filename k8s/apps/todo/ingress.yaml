@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cep-api
+  name: todo-api
   annotations:
     konghq.com/strip-path: 'true'
 spec:
@@ -9,10 +9,10 @@ spec:
   rules:
     - http:
         paths:
-          - path: /cep
+          - path: /todo
             pathType: ImplementationSpecific
             backend:
               service:
-                name: cep-api
+                name: todo-api
                 port:
-                  number: 8080
+                  number: 8754
