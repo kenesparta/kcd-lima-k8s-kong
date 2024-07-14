@@ -27,10 +27,11 @@ deploy-cep-api:
 	kubectl create ns $(app_ns)
 	# Auth
 	kubectl create secret generic cep-api-key --from-literal=key="$$API_KEY" -n $(app_ns)
+	kubectl label secret cep-api-key "konghq.com/credential=key-auth" -n $(app_ns)
 	kubectl apply -f ./apps/cep --recursive -n $(app_ns)
-	# Rate Limit
-	kubectl annotate service cep-api konghq.com/plugins=cep-rate-limiting,cep-api-key -n $(app_ns)
-	kubectl annotate ingress cep-api konghq.com/plugins=cep-rate-limiting,cep-api-key -n $(app_ns)
+	# Annotate
+	kubectl annotate service cep-api konghq.com/plugins=cep-rate-limiting,key-auth -n $(app_ns)
+	kubectl annotate ingress cep-api konghq.com/plugins=cep-rate-limiting,key-auth -n $(app_ns)
 
 deploy-todo-api:
 	kubectl apply -f ./apps/todo --recursive -n $(app_ns)

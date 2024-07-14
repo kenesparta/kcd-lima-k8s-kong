@@ -1,9 +1,18 @@
-#apiVersion: configuration.konghq.com/v1
-#kind: KongConsumer
-#metadata:
-#   name: cep-api-key
-#   annotations:
-#      kubernetes.io/ingress.class: kong
-#username: ken
-#credentials:
-#   - cep-api-key
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+   name: key-auth
+plugin: key-auth
+config:
+   key_names:
+      - apikey
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+   name: cep-api-key
+   annotations:
+      kubernetes.io/ingress.class: kong
+username: ken
+credentials:
+   - cep-api-key
