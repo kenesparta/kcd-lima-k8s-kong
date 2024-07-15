@@ -1,6 +1,5 @@
 SHELL := /bin/bash
 
-
 include .env
 export $(shell sed 's/=.*//' .env)
 
