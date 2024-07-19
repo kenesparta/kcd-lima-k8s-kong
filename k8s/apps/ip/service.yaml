@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nodejs-ip
+  name: nodejs-ip
+spec:
+  ports:
+    - port: 3000
+      name: tcp
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: nodejs-ip

@@ -13,10 +13,15 @@ resource "google_container_node_pool" "primary_nodes" {
   cluster    = google_container_cluster.kcd_cluster_a.id
   node_count = 3
 
+  autoscaling {
+    min_node_count = 3
+    max_node_count = 7
+  }
+
   node_config {
     spot         = true
     machine_type = "n1-standard-1"
-
+    disk_size_gb = 10
     oauth_scopes = [
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",
