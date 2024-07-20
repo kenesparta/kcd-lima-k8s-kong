@@ -5,7 +5,7 @@ metadata:
     app: nodejs-ip
   name: nodejs-ip
 spec:
-  replicas: 10
+  replicas: 15
   selector:
     matchLabels:
       app: nodejs-ip
@@ -19,5 +19,5 @@ spec:
         - image: kenesparta/nodejs-ip:latest
           name: nodejs-ip
           ports:
-            - containerPort: 8754
+            - containerPort: 3000
           resources: {}

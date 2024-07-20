@@ -11,17 +11,14 @@ var wg sync.WaitGroup
 func Test_todoRequest(t *testing.T) {
 	r := NewRequest()
 	r.Method = http.MethodPost
-	for range 500 {
-		wg.Add(1)
-		go func() {
-			r.request(
-				todoEndpoint,
-				map[string]any{
-					"title":     randomRunes(),
-					"completed": true,
-				},
-			)
-		}()
+	for range 100 {
+		r.request(
+			todoEndpoint,
+			map[string]any{
+				"title":     randomRunes(),
+				"completed": true,
+			},
+		)
 	}
 	wg.Wait()
 }
