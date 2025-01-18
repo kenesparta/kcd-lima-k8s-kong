@@ -7,5 +7,5 @@ metadata:
 config:
   minute: 50
   policy: local
-  limit_by: consumer
+  limit_by: credential
 plugin: rate-limiting
