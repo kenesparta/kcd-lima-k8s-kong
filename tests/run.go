@@ -1,4 +1,4 @@
-package auth
+package tests
 
 import (
 	"bytes"
@@ -11,7 +11,16 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/joho/godotenv"
 )
+
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+}
 
 func randomRunes() string {
 	letterRunes := []rune("abcdefghijklmnopqrstuvwxyz")
@@ -28,6 +37,7 @@ func randomRunes() string {
 var (
 	todoEndpoint = fmt.Sprintf("http://%s/td/todos", os.Getenv("EXTERNAL_IP"))
 	cepEndpoint  = fmt.Sprintf("http://%s/cep/01023-001", os.Getenv("EXTERNAL_IP"))
+	ipEndpoint   = fmt.Sprintf("http://%s/ip", os.Getenv("EXTERNAL_IP"))
 )
 
 type Request struct {

@@ -5,7 +5,7 @@ metadata:
     app: cep-api
   name: cep-api
 spec:
-  replicas: 10
+  replicas: 2
   selector:
     matchLabels:
       app: cep-api

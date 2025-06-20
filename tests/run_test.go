@@ -1,4 +1,4 @@
-package auth
+package tests
 
 import (
 	"net/http"
@@ -31,6 +31,21 @@ func Test_cepRequest(t *testing.T) {
 			defer wg.Done()
 			r.request(
 				cepEndpoint,
+				nil,
+			)
+		}()
+	}
+	wg.Wait()
+}
+
+func Test_ipRequest(t *testing.T) {
+	r := NewRequest()
+	for range 10000 {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			r.request(
+				ipEndpoint,
 				nil,
 			)
 		}()
