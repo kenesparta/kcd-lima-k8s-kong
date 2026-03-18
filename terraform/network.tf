@@ -16,7 +16,7 @@ resource "google_compute_firewall" "allow_ssh" {
 
   allow {
     protocol = "tcp"
-    ports = ["22"]
+    ports    = ["22"]
   }
   source_ranges = ["0.0.0.0/0"]
 }
@@ -27,7 +27,7 @@ resource "google_compute_firewall" "allow_application_ports" {
 
   allow {
     protocol = "tcp"
-    ports = ["30081"]
+    ports    = ["30081"]
   }
   source_ranges = ["0.0.0.0/0"]
 }
@@ -38,7 +38,7 @@ resource "google_compute_firewall" "allow_http" {
 
   allow {
     protocol = "tcp"
-    ports = ["80"]
+    ports    = ["80"]
   }
   source_ranges = ["0.0.0.0/0"]
 }
@@ -52,7 +52,7 @@ resource "google_compute_firewall" "allow-egress" {
     ports    = ["0-65535"]
   }
 
-  direction = "EGRESS"
+  direction          = "EGRESS"
   destination_ranges = ["0.0.0.0/0"]
 }
 

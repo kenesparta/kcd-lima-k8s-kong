@@ -21,7 +21,7 @@ resource "google_container_node_pool" "primary_nodes" {
   node_config {
     spot         = true
     machine_type = "e2-standard-2"
-    disk_size_gb = 15
+    disk_size_gb = 40
     oauth_scopes = [
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/logging.write",

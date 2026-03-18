@@ -1,13 +1,9 @@
-variable "domain_name" {
-  type = string
-}
-
 variable "project_name" {
-  type = string
+  type        = string
   description = "(string) global project name"
 }
 
 variable "region" {
-  type = string
+  type    = string
   default = "us-central1"
 }
