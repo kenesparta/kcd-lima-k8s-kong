@@ -14,8 +14,8 @@ resource "google_container_node_pool" "primary_nodes" {
   node_count = 3
 
   autoscaling {
-    min_node_count = 3
-    max_node_count = 7
+    min_node_count = 5
+    max_node_count = 10
   }
 
   node_config {
