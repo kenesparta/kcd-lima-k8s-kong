@@ -1,5 +1,5 @@
 resource "google_container_cluster" "kcd_cluster_a" {
-  name                     = "kcd-cluster-a"
+  name                     = "kcd-main-cluster"
   location                 = "us-central1-c"
   network                  = google_compute_network.kcd_main_network.id
   subnetwork               = google_compute_subnetwork.kcd_subnet_a.id

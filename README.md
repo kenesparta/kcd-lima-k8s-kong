@@ -72,13 +72,13 @@ make dev/apply
 
 This creates:
 
-- GKE cluster `kcd-cluster-a` in `us-central1-c` with a node pool of **e2-standard-2 spot instances**, autoscaling 5–10 nodes
+- GKE cluster `kcd-main-cluster` in `us-central1-c` with a node pool of **e2-standard-2 spot instances**, autoscaling 5–10 nodes
 - VPC `kcd-vpc` with a `10.0.0.0/16` subnet, Cloud Router + NAT gateway, and firewall rules
 
 Point `kubectl` at the new cluster:
 
 ```bash
-gcloud container clusters get-credentials kcd-cluster-a \
+gcloud container clusters get-credentials kcd-main-cluster \
   --zone us-central1-c \
   --project kdc-lima
 ```

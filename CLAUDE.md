@@ -4,23 +4,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Kubernetes cluster infrastructure project demonstrating the **API Gateway pattern** using **Kong** on K8s. Three microservices (CEP API, Todo API, IP API) are deployed behind Kong with authentication and rate limiting. Supports both local development via KIND and cloud deployment via Terraform on Google Cloud GKE.
+Kubernetes cluster infrastructure project demonstrating the **API Gateway pattern** using **Kong** on K8s. Three
+microservices (CEP API, Todo API, IP API) are deployed behind Kong with authentication and rate limiting. Supports both
+local development via KIND and cloud deployment via Terraform on Google Cloud GKE.
 
 ## Architecture
 
 Two deployment paths share the same K8s manifests:
+
 - **Local**: KIND cluster (1 control-plane + 3 workers) → Kong Ingress Controller → microservices
 - **Cloud**: Terraform provisions GKE cluster on Google Cloud → same K8s manifests applied
 
-Kong acts as the API gateway, handling routing, key-auth authentication, and rate limiting via KongPlugin CRDs. All apps deploy to the `kcd-apps` namespace; Kong lives in `kcd-kong`.
+Kong acts as the API gateway, handling routing, key-auth authentication, and rate limiting via KongPlugin CRDs. All apps
+deploy to the `kcd-apps` namespace; Kong lives in `kcd-kong`.
 
 ### Deployed Services
 
-| Service | Image | Port | Route | Auth |
-|---------|-------|------|-------|------|
-| CEP API (postal codes) | `kenesparta/cep-api` | 8080 | `/cep` | Key-auth + rate limit (50/min) |
-| Todo API (Rust) | `kenesparta/rs-simple-todo` | 8754 | `/td` | Rate limit (1/sec) |
-| IP API (Node.js) | `kenesparta/nodejs-ip` | 3000 | `/ip` | None |
+| Service                | Image                       | Port | Route  | Auth                           |
+|------------------------|-----------------------------|------|--------|--------------------------------|
+| CEP API (postal codes) | `kenesparta/cep-api`        | 8080 | `/cep` | Key-auth + rate limit (50/min) |
+| Todo API (Rust)        | `kenesparta/rs-simple-todo` | 8754 | `/td`  | Rate limit (1/sec)             |
+| IP API (Node.js)       | `kenesparta/nodejs-ip`      | 3000 | `/ip`  | None                           |
 
 ## Common Commands
 
@@ -50,7 +54,10 @@ make dev/apply    # Apply infrastructure
 make dev/destroy  # Tear down infrastructure
 ```
 
-Terraform manages only Google Cloud infrastructure (cluster, node pool, network) — there is no Kubernetes provider. After `dev/apply`, point kubectl at the cluster with `gcloud container clusters get-credentials kcd-cluster-a --zone us-central1-c --project kdc-lima`, then install Kong and the apps using the `k8s/` make targets (skip `kind-init`).
+Terraform manages only Google Cloud infrastructure (cluster, node pool, network) — there is no Kubernetes provider.
+After `dev/apply`, point kubectl at the cluster with
+`gcloud container clusters get-credentials kcd-main-cluster --zone us-central1-c --project kdc-lima`, then install Kong
+and the apps using the `k8s/` make targets (skip `kind-init`).
 
 ### Integration/Load Tests
 
