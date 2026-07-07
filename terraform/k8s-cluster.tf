@@ -9,18 +9,18 @@ resource "google_container_cluster" "kcd_cluster_a" {
 }
 
 resource "google_container_node_pool" "primary_nodes" {
-  name       = "kcd-node-pool"
-  cluster    = google_container_cluster.kcd_cluster_a.id
-  node_count = 5
+  name               = "kcd-node-pool"
+  cluster            = google_container_cluster.kcd_cluster_a.id
+  initial_node_count = 2
 
   autoscaling {
-    min_node_count = 5
+    min_node_count = 2
     max_node_count = 10
   }
 
   node_config {
     spot         = true
-    machine_type = "e2-standard-2"
+    machine_type = "e2-standard-4"
     disk_size_gb = 60
     oauth_scopes = [
       "https://www.googleapis.com/auth/devstorage.read_only",

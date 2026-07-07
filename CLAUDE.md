@@ -74,6 +74,6 @@ go test -run Test_ipRequest -v      # 10,000 concurrent GET requests to IP API (
 
 - **KIND cluster config**: `k8s/kind-local/clusterconfig.yaml` (ports 80, 443, 49412 mapped to host)
 - **Kong Gateway/GatewayClass**: `k8s/kong/gateway.yaml` (uses Kubernetes Gateway API v1)
-- **GKE cluster**: `terraform/k8s-cluster.tf` (e2-standard-2 spot instances, auto-scaling 5-10 nodes, us-central1-c)
+- **GKE cluster**: `terraform/k8s-cluster.tf` (e2-standard-4 spot instances, auto-scaling 5-10 nodes, us-central1-c)
 - **Network**: `terraform/network.tf` (VPC 10.0.0.0/16, NAT gateway, firewall rules)
 - All `.env` files are gitignored; use the `.env.example` files as templates
