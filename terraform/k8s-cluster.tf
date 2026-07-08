@@ -4,17 +4,17 @@ resource "google_container_cluster" "kcd_cluster_a" {
   network                  = google_compute_network.kcd_main_network.id
   subnetwork               = google_compute_subnetwork.kcd_subnet_a.id
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = 4
   deletion_protection      = false
 }
 
 resource "google_container_node_pool" "primary_nodes" {
   name               = "kcd-node-pool"
   cluster            = google_container_cluster.kcd_cluster_a.id
-  initial_node_count = 2
+  initial_node_count = 4
 
   autoscaling {
-    min_node_count = 2
+    min_node_count = 4
     max_node_count = 10
   }
 
